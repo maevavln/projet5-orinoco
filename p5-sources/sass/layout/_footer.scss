@@ -1,0 +1,11 @@
+.footer {
+    @include flexMid;
+    width: 100%;
+    height: 100px;
+    background: $rose-pastelle;
+    padding-top: 10px;
+ }
+
+ .footer-space {
+     padding-top: 100px;
+ }

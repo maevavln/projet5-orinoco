@@ -1,0 +1,20 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+a:link {
+  @include link
+}
+
+a:visited{
+  @include link
+}
+
+.page-container {
+  overflow-x: hidden;
+  position: relative;
+}

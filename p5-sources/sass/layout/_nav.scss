@@ -1,0 +1,26 @@
+.nav ul {
+    margin: 0px;
+    padding: 0px;
+    list-style:none;
+}
+
+.navbar {
+    width: 100%;
+}
+
+.nav a {
+    padding: 1em;
+    display: block;
+    text-align:center;
+    text-decoration: none;
+}
+
+.nav .menu {
+    display: flex; 
+    flex-direction : row; 
+    justify-content: center; 
+
+    @media(max-width: 450px) {
+        flex-flow: column wrap;
+      }
+}
