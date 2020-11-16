@@ -1,16 +1,57 @@
-function loadDoc() {
-    var xhttp = new XMLHttpRequest();
+function loadDoc(url){
+  const teddiespromise = new Promise((resolve, reject) => {
+    let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         console.log(this.responseText);
-        let listTeddies = JSON.parse(this.responseText);
-        console.log(listTeddies);
-       document.getElementById("demo").innerHTML = "<img class=\"img-product\" src= \"" + listTeddies[0].imageUrl + "\" alt=\"peluche\">";
-       /*<img class="img-product" src="images/teddy_2-min.png" alt="la peluche tit'ours" />*/
+        let data = JSON.parse(this.responseText);
+        resolve(data);
       }
     };
-    xhttp.open("GET", "http://localhost:3000/api/teddies", true);
+    xhttp.open("GET", url, true);
     xhttp.send();
-  }
-console.log("coucou");
-loadDoc();
+  });
+  return teddiespromise;
+}
+
+
+function createListing(){
+  let teddiespromise = loadDoc("http://localhost:3000/api/teddies");
+  teddiespromise.then((listTeddies) => {
+    console.log(listTeddies);
+        for (let i = 0; i < listTeddies.length; i++) {
+          let theTeddies = document.getElementById("theTeddies");
+          let teddiesImg = document.createElement("img");
+          teddiesImg.setAttribute("class", "img-product");
+          teddiesImg.setAttribute("src", listTeddies[i].imageUrl);
+          teddiesImg.setAttribute("alt", "peluche : " + listTeddies[i].name);
+          let teddiesDiv = document.createElement('div');
+          teddiesDiv.setAttribute("class", "details-teddies col-3 custom-line");
+          teddiesDiv.appendChild(teddiesImg);
+          let teddiesDivName = document.createElement("div");
+          teddiesDivName.setAttribute("class", "infos-teddies");
+          teddiesDiv.appendChild(teddiesDivName);
+          let teddiesName = document.createElement("h3");
+          teddiesName.setAttribute("class", "name-teddies text-center");
+          teddiesName.textContent = listTeddies[i].name;
+          teddiesDivName.appendChild(teddiesName);
+          let descriptionTeddie = document.createElement('div');
+          descriptionTeddie.setAttribute("class", "description-teddies text-justify");
+          descriptionTeddie.textContent = listTeddies[i].description;
+          teddiesDivName.appendChild(descriptionTeddie);
+          let priceTeddie = document.createElement('div');
+          priceTeddie.setAttribute("class", "price-teddies text-center custom-price");
+          priceTeddie.textContent = listTeddies[i].price + " €";
+          teddiesDivName.appendChild(priceTeddie);
+          theTeddies.appendChild(teddiesDiv);
+        }
+    console.log("toutes les peluches ont été recuperees");
+  })
+}
+
+function createOneTeddyPage(){
+  let teddiespromise = loadDoc("http://localhost:3000/api/teddies/5be9c8541c9d440000665243");
+  teddiespromise.then((teddy) => {
+    console.log(teddy)
+  })
+}

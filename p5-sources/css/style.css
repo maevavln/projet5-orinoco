@@ -16,7 +16,17 @@ a:visited {
   color: inherit;
 }
 
-.page-container {
+body {
+  margin: 0;
+  padding: 0;
+  background: #FFF;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page-container,
+#hero-bloc {
   overflow-x: hidden;
   position: relative;
 }
@@ -66,13 +76,9 @@ button {
   font-size: 1em;
 }
 
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.bg-pink {
   width: 100%;
-  height: 50px;
-  background: #f3e9f1;
+  background-color: #f3e9f1 !important;
 }
 
 .logo {
@@ -123,42 +129,56 @@ button {
   }
 }
 
-.bandeau {
-  display: inline-block;
-  position: relative;
-  width: 100%;
+.navbar-toggle .icon-bar {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 26px;
 }
 
-.bandeau .text-bandeau {
-  z-index: 1;
-  position: absolute;
-  text-align: center;
-  font-family: Georgia;
-  margin: 0 auto;
-  left: 60%;
-  right: 0;
-  top: 50%;
-  color: white;
-  width: 30%;
+.page-container {
+  overflow-x: hidden;
+  position: relative;
 }
 
 .img-product {
-  width: 212px;
+  width: 100%;
+  height: 100%;
   padding-bottom: 20px;
 }
 
-.container-listing {
-  max-width: 1000px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 50px;
+.intro-listing {
+  padding-bottom: 40px;
+  padding-top: 30px;
+}
+
+.tittle-text-intro-listing {
+  font-family: "Roboto", sans-serif;
+  font-style: bold;
+  font-size: 2em;
+  color: #404040;
+}
+
+.icon-made-home-with-love {
+  font-size: 3em;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.text-intro-listing {
+  font-family: "Roboto", sans-serif;
+  font-style: italic;
+  font-size: 1em;
+  color: grey;
 }
 
 .product {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .title-teddy {
@@ -184,19 +204,12 @@ button {
   align-items: stretch;
 }
 
-.listing-tab {
-  padding-top: 20px;
+.custom-line {
+  margin-bottom: 2rem;
 }
 
-.bg-array {
-  background-color: #f3e9f1;
-}
-
-.teddy-center {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
+.custom-price {
+  margin: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

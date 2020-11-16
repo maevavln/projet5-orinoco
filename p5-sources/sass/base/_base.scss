@@ -14,7 +14,17 @@ a:visited{
   @include link
 }
 
-.page-container {
+body {
+  margin: 0;
+  padding: 0;
+  background: #FFF;
   overflow-x: hidden;
-  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+.page-container,
+    #hero-bloc {
+        overflow-x: hidden;
+        position: relative;
+    }

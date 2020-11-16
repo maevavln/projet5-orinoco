@@ -24,3 +24,8 @@
         flex-flow: column wrap;
       }
 }
+
+.navbar-toggle .icon-bar {
+    background-color: rgba(0, 0, 0, .5);
+    width: 26px;
+}
