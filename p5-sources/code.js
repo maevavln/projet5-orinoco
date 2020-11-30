@@ -8,6 +8,7 @@ function loadDoc(url){
         resolve(data);
       }
     };
+    console.log(url);
     xhttp.open("GET", url, true);
     xhttp.send();
   });
@@ -32,7 +33,7 @@ function createListing(){
           teddiesDivName.setAttribute("class", "infos-teddies");
           teddiesDiv.appendChild(teddiesDivName);
           let teddiesName = document.createElement("h3");
-          teddiesName.setAttribute("class", "name-teddies text-center");
+          teddiesName.setAttribute("class", "name-teddies text-center style-name-teddy");
           teddiesName.textContent = listTeddies[i].name;
           teddiesDivName.appendChild(teddiesName);
           let descriptionTeddie = document.createElement('div');
@@ -43,15 +44,32 @@ function createListing(){
           priceTeddie.setAttribute("class", "price-teddies text-center custom-price");
           priceTeddie.textContent = listTeddies[i].price + " €";
           teddiesDivName.appendChild(priceTeddie);
+          let plusDinfo = document.createElement('a');
+          plusDinfo.setAttribute("class", "infos-teddy text-center");
+          plusDinfo.textContent = "Voir la fiche produit";
+          plusDinfo.setAttribute("href", "product.html?id=" + listTeddies[i]._id);
+          teddiesDivName.appendChild(plusDinfo);
           theTeddies.appendChild(teddiesDiv);
         }
     console.log("toutes les peluches ont été recuperees");
   })
 }
 
-function createOneTeddyPage(){
-  let teddiespromise = loadDoc("http://localhost:3000/api/teddies/5be9c8541c9d440000665243");
-  teddiespromise.then((teddy) => {
-    console.log(teddy)
-  })
+function createOneTeddyPage(urlProduct, productId){
+  console.log(urlProduct);
+  if (productId === undefined) {
+    // afficher une page qui dit que le produit n'existe pas
+    console.log("le produit n'existe pas");  
+  }
+  else {
+    let teddiespromise = loadDoc(urlProduct);
+    teddiespromise.then((teddy) => {
+      console.log(teddy); 
+      let imgProduct = document.getElementById("img-product");
+      imgProduct.setAttribute("src",teddy.imageUrl);
+      let nameProduct = document.getElementById("name-product");
+      nameProduct.setAttribute("class", "name-teddy", name-product);
+    })
+  }
+  
 }

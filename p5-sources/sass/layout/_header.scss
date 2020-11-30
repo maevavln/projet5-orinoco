@@ -2,8 +2,31 @@
     width: 100%;
     background-color: $rose-pastelle !important;
 }
- 
 
- .logo {
-     @include flexMid
+ .header-elements {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .logo {
+      display: flex;
+      justify-content: center;
+  }
+
+  .icon-cart {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+  }
+       
+  .text-font {
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bolder;
+    font-size: 1.2em;
+  }
+  
+ .style-font-shop {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.2em;
+  font-weight: unset;
  }

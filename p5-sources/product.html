@@ -53,26 +53,10 @@
         </div>
     </header>
 
-    <!-- Bloc 1 START bandeau --->
-    <section class="text-center intro-listing">
-        <h2 class="tittle-text-intro-listing text-bandeau text-center font-style-intro">Littles teddies</h2>
-        <p class="text-intro-listing">Découvrez les peluches cousues a la maison 100% made in en France</p>
-        <i class="icon-made-home-with-love fas fa-hand-holding-heart"></i>
-    </section>
-   
-    <!-- Bloc 2 listing produit -->
-    <section>
-        <div id="theTeddies" class="product frame-product row custom-line">
-            <div class="text-center details-teddies">  
-                <img src="" alt=""> 
-                <div class="infos-teddies">
-                    <h3 class="tittleTeddies style-name-teddy"></h3>
-                    <div class ="description-teddies text-justify"></div>
-                    <div class="price-teddies custom-price"></div>
-                    <div class="infos-teddy"></div>
-                </div>
-            </div> 
-        </div> 
+    <!-- Bloc 1 PRODUIT --->
+    <section class="container">
+      <img class="img-product-page gallery-content" id="img-product" src="" alt="">
+      <div class="name-teddy" id="name-product"></div> 
     </section>
 
     <!-- Bloc 3 footer -->    
@@ -91,7 +75,10 @@
     <script src="code.js"></script>
     <script src="main.js"></script>
     <script>
-        createListing();
+        let searchParam = new URLSearchParams(window.location.search);
+        let productId = searchParam.get("id");
+        let url = "http://localhost:3000/api/teddies/" + productId; 
+        createOneTeddyPage(url, productId);       
     </script>
 </body>
 </html>
