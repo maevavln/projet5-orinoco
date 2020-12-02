@@ -54,9 +54,22 @@
     </header>
 
     <!-- Bloc 1 PRODUIT --->
-    <section class="container">
-      <img class="img-product-page gallery-content" id="img-product" src="" alt="">
-      <div class="name-teddy" id="name-product"></div> 
+    <section class="container infos-product">
+      <div class="row">
+        <!-- col left img --->
+        <img class="col-3 product-img" id="img-product" src="" alt="">
+        <!-- col right info --->
+        <div class="col-4">
+          <h2 class="name-teddy" id="name-product"></h2> 
+          <div class="description-product" id="product-description"></div>
+          <select class= "color-teddy" id="color-product" name="selectionner une couleur">
+          </select>
+          <!-- <button class= "color-teddy" id="color-product"></button> -->
+          <div class="price-product" id="product-price"></div>
+          <!-- bouton ajout au panier -->
+          <button type="button" class="add-to-cart" data-id="teddy" data-name="n" data-price="" data-weight="97" data-url="">Ajouter au panier</button>
+        </div>
+      </div>
     </section>
 
     <!-- Bloc 3 footer -->    
@@ -80,5 +93,6 @@
         let url = "http://localhost:3000/api/teddies/" + productId; 
         createOneTeddyPage(url, productId);       
     </script>
+    
 </body>
 </html>

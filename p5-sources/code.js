@@ -64,12 +64,37 @@ function createOneTeddyPage(urlProduct, productId){
   else {
     let teddiespromise = loadDoc(urlProduct);
     teddiespromise.then((teddy) => {
-      console.log(teddy); 
+      console.log(teddy);
+      let panier = localStorage.getItem('panier');
+      localStorage.setItem("panier", panier + "\n" + teddy._id);
       let imgProduct = document.getElementById("img-product");
+      //imgProduct.setAttribute("class", "product-img");
       imgProduct.setAttribute("src",teddy.imageUrl);
       let nameProduct = document.getElementById("name-product");
-      nameProduct.setAttribute("class", "name-teddy", name-product);
+      nameProduct.setAttribute("class", "name-teddy");
+      nameProduct.textContent = teddy.name;
+      //let colorProduct = document.getElementById("color-product");
+      //colorProduct.setAttribute("class", "color-teddy");
+      //colorProduct.textContent = teddy.colors;
+      let descriptionProduct = document.getElementById("product-description");
+      descriptionProduct.setAttribute("class", "description-product space-product-description");
+      descriptionProduct.textContent = teddy.description;
+      let priceProduct = document.getElementById("product-price");
+      priceProduct.setAttribute("class", "price-product space-product-price");
+      priceProduct.textContent = teddy.price + " €";
+      addColorInSelector(teddy.colors);
     })
   }
+ 
+  function addColorInSelector(colorList){
+    let colorSelector = document.getElementById("color-product")
+    for (let i = 0; i < colorList.length; i++) {
+      let option = document.createElement("option");
+      option.text = colorList[i];
+      colorSelector.add(option);
+    }
+  }
+
+  function addTocart()
   
 }
