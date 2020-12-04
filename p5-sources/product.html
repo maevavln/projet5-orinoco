@@ -67,7 +67,7 @@
           <!-- <button class= "color-teddy" id="color-product"></button> -->
           <div class="price-product" id="product-price"></div>
           <!-- bouton ajout au panier -->
-          <button type="button" class="add-to-cart" data-id="teddy" data-name="n" data-price="" data-weight="97" data-url="">Ajouter au panier</button>
+          <button id="lebouton">Ajouter au panier</button>
         </div>
       </div>
     </section>
@@ -91,7 +91,8 @@
         let searchParam = new URLSearchParams(window.location.search);
         let productId = searchParam.get("id");
         let url = "http://localhost:3000/api/teddies/" + productId; 
-        createOneTeddyPage(url, productId);       
+        createOneTeddyPage(url, productId);
+        addToCart();
     </script>
     
 </body>

@@ -65,13 +65,13 @@ function createOneTeddyPage(urlProduct, productId){
     let teddiespromise = loadDoc(urlProduct);
     teddiespromise.then((teddy) => {
       console.log(teddy);
-      let panier = localStorage.getItem('panier');
-      localStorage.setItem("panier", panier + "\n" + teddy._id);
+      //let panier = localStorage.getItem('panier');
+      //localStorage.setItem("panier", panier + "\n" + teddy._id);
       let imgProduct = document.getElementById("img-product");
       //imgProduct.setAttribute("class", "product-img");
       imgProduct.setAttribute("src",teddy.imageUrl);
       let nameProduct = document.getElementById("name-product");
-      nameProduct.setAttribute("class", "name-teddy");
+      //nameProduct.setAttribute("class", "name-teddy");
       nameProduct.textContent = teddy.name;
       //let colorProduct = document.getElementById("color-product");
       //colorProduct.setAttribute("class", "color-teddy");
@@ -80,10 +80,10 @@ function createOneTeddyPage(urlProduct, productId){
       descriptionProduct.setAttribute("class", "description-product space-product-description");
       descriptionProduct.textContent = teddy.description;
       let priceProduct = document.getElementById("product-price");
-      priceProduct.setAttribute("class", "price-product space-product-price");
+      //priceProduct.setAttribute("class", "price-product space-product-price");
       priceProduct.textContent = teddy.price + " €";
       addColorInSelector(teddy.colors);
-    })
+    });
   }
  
   function addColorInSelector(colorList){
@@ -92,9 +92,18 @@ function createOneTeddyPage(urlProduct, productId){
       let option = document.createElement("option");
       option.text = colorList[i];
       colorSelector.add(option);
-    }
+    };
   }
 
-  function addTocart()
-  
 }
+
+function addToCart(){
+  let el = document.getElementById('lebouton');
+  el.setAttribute('onclick','alert("produit ajouté au panier");')
+  console.log('produit ajouté au panier');
+  /*let button = document.getElementsByTagName('button')[0]
+      button.addEventListener('click', () => {
+        console.log('j\'ajoute au panier');
+
+      */ 
+};
