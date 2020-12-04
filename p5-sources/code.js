@@ -95,7 +95,7 @@ function createOneTeddyPage(urlProduct, productId){
     };
   }
 
-  if (document.readyState == 'loading') {
+  /* if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
   } else {
     ready()
@@ -116,7 +116,43 @@ function createOneTeddyPage(urlProduct, productId){
       let price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
       let imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src;
       console.log(title, price, imageSrc);
+      let panier = localStorage.getItem('panier');
+      localStorage.setItem("panier", panier + "\n" + teddy._id);
+      console.log("panier");
   }
-  
+  */
+
+ let carts = document.querySelectorAll(".add-cart");
+
+ for (let i=0; i < carts.length; i++) {
+       carts[i].addEventListener("click", () => {
+           cartNumbers ()
+       });
+  }
+
+  function onLoadCartNumbers(){ //creation d'un patch panier
+    let productNumbers = localStorage.getItem('cartNumbers');
+
+      if(productNumbers){
+        document.querySelector('.btn-cart span').textContent = productNumbers;
+      }
+  }
+
+  function cartNumbers () {
+    let productNumbers = localStorage.getItem('cartNumbers');
+
+    productNumbers = parseInt(productNumbers);
+
+    if( productNumbers ) {
+      localStorage.setItem("cartNumbers", productNumbers + 1);
+      document.querySelector('.btn-cart span').textContent = productNumbers + 1;
+    } else {
+      localStorage.setItem("cartNumbers", 1);
+      document.querySelector('.btn-cart span').textContent = 1;
+    }
+  }
+
+  onLoadCartNumbers()
 
 }
+
