@@ -83,76 +83,61 @@ function createOneTeddyPage(urlProduct, productId){
       //priceProduct.setAttribute("class", "price-product space-product-price");
       priceProduct.textContent = teddy.price + " €";
       addColorInSelector(teddy.colors);
+
+      let btnAddCart = document.getElementById("btn-add-cart");
+      btnAddCart.addEventListener("click", () => {
+        addProductToCart(teddy);
+      });
     });
   }
- 
-  function addColorInSelector(colorList){
-    let colorSelector = document.getElementById("color-product")
-    for (let i = 0; i < colorList.length; i++) {
-      let option = document.createElement("option");
-      option.text = colorList[i];
-      colorSelector.add(option);
-    };
+   onLoadCartNumbers()
+
+}
+
+function addColorInSelector(colorList){
+  let colorSelector = document.getElementById("color-product")
+  for (let i = 0; i < colorList.length; i++) {
+    let option = document.createElement("option");
+    option.text = colorList[i];
+    colorSelector.add(option);
+  };
+}
+
+function onLoadCartNumbers(){ //creation d'un patch panier
+  let productNumbers = localStorage.getItem('cartNumbers');
+
+    if(productNumbers){
+      document.querySelector('.btn-cart span').textContent = productNumbers;
+    }
+}
+
+function addProductToCart(product) {
+  console.log("the product clicked is", product);
+  //let jsonProduct = JSON.stringify(product);
+  //console.log(jsonProduct);
+  let products = localStorage.getItem("cartProduct");
+  if (products == null) {
+    let productArray = [];
+    productArray.push(product);
+    jsonProducts = JSON.stringify(productArray);
+    localStorage.setItem("cartProduct", jsonProducts);
+  }
+  else {
+    productArray = JSON.parse(products);
+    productArray.push(product);
+    jsonProducts = JSON.stringify(productArray);
+    localStorage.setItem("cartProduct", jsonProducts);
   }
 
-  /* if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready)
+  let productNumbers = localStorage.getItem('cartNumbers');
+  productNumbers = parseInt(productNumbers);
+
+  if( productNumbers ) {
+    localStorage.setItem("cartNumbers", productNumbers + 1);
+    document.querySelector('.btn-cart span').textContent = productNumbers + 1;
   } else {
-    ready()
+    localStorage.setItem("cartNumbers", 1);
+    document.querySelector('.btn-cart span').textContent = 1;
   }
-
-  function ready() {
-    let addToCartButtons = document.getElementsByClassName('shop-item-button');
-    for (let i = 0; i < addToCartButtons.length; i++) {
-        let button = addToCartButtons[i];
-        button.addEventListener('click', addToCartClicked);
-    }
-  } 
-
-  function addToCartClicked(event) {
-      let button = event.target
-      let shopItem = button.parentElement.parentElement
-      let title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
-      let price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
-      let imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src;
-      console.log(title, price, imageSrc);
-      let panier = localStorage.getItem('panier');
-      localStorage.setItem("panier", panier + "\n" + teddy._id);
-      console.log("panier");
-  }
-  */
-
- let carts = document.querySelectorAll(".add-cart");
-
- for (let i=0; i < carts.length; i++) {
-       carts[i].addEventListener("click", () => {
-           cartNumbers ()
-       });
-  }
-
-  function onLoadCartNumbers(){ //creation d'un patch panier
-    let productNumbers = localStorage.getItem('cartNumbers');
-
-      if(productNumbers){
-        document.querySelector('.btn-cart span').textContent = productNumbers;
-      }
-  }
-
-  function cartNumbers () {
-    let productNumbers = localStorage.getItem('cartNumbers');
-
-    productNumbers = parseInt(productNumbers);
-
-    if( productNumbers ) {
-      localStorage.setItem("cartNumbers", productNumbers + 1);
-      document.querySelector('.btn-cart span').textContent = productNumbers + 1;
-    } else {
-      localStorage.setItem("cartNumbers", 1);
-      document.querySelector('.btn-cart span').textContent = 1;
-    }
-  }
-
-  onLoadCartNumbers()
-
 }
 
