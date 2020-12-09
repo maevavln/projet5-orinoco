@@ -65,28 +65,21 @@ function createOneTeddyPage(urlProduct, productId){
     let teddiespromise = loadDoc(urlProduct);
     teddiespromise.then((teddy) => {
       console.log(teddy);
-      //let panier = localStorage.getItem('panier');
-      //localStorage.setItem("panier", panier + "\n" + teddy._id);
       let imgProduct = document.getElementById("img-product");
-      //imgProduct.setAttribute("class", "product-img");
       imgProduct.setAttribute("src",teddy.imageUrl);
       let nameProduct = document.getElementById("name-product");
-      //nameProduct.setAttribute("class", "name-teddy");
       nameProduct.textContent = teddy.name;
-      //let colorProduct = document.getElementById("color-product");
-      //colorProduct.setAttribute("class", "color-teddy");
-      //colorProduct.textContent = teddy.colors;
       let descriptionProduct = document.getElementById("product-description");
       descriptionProduct.setAttribute("class", "description-product space-product-description");
       descriptionProduct.textContent = teddy.description;
       let priceProduct = document.getElementById("product-price");
-      //priceProduct.setAttribute("class", "price-product space-product-price");
       priceProduct.textContent = teddy.price + " €";
       addColorInSelector(teddy.colors);
 
       let btnAddCart = document.getElementById("btn-add-cart");
       btnAddCart.addEventListener("click", () => {
         addProductToCart(teddy);
+        totalCost(teddy);
       });
     });
   }
@@ -111,22 +104,20 @@ function onLoadCartNumbers(){ //creation d'un patch panier
     }
 }
 
-function addProductToCart(product) {
+function addProductToCart(product) { //ajout au panier 
   console.log("the product clicked is", product);
-  //let jsonProduct = JSON.stringify(product);
-  //console.log(jsonProduct);
-  let products = localStorage.getItem("cartProduct");
-  if (products == null) {
+  let CartItems = localStorage.getItem("cartProduct");
+  if (CartItems == null) {
     let productArray = [];
     productArray.push(product);
-    jsonProducts = JSON.stringify(productArray);
-    localStorage.setItem("cartProduct", jsonProducts);
+    jsonCartItems = JSON.stringify(productArray);
+    localStorage.setItem("cartProduct", jsonCartItems);
   }
   else {
-    productArray = JSON.parse(products);
+    productArray = JSON.parse(CartItems);
     productArray.push(product);
-    jsonProducts = JSON.stringify(productArray);
-    localStorage.setItem("cartProduct", jsonProducts);
+    jsonCartItems = JSON.stringify(productArray);
+    localStorage.setItem("cartProduct", jsonCartItems);
   }
 
   let productNumbers = localStorage.getItem('cartNumbers');
@@ -141,3 +132,19 @@ function addProductToCart(product) {
   }
 }
 
+function totalCost(teddy) { //calcul du prix total 
+
+  let cartCost = localStorage.getItem("totalCost");
+
+  console.log("My cartCost is", cartCost);
+  console.log(typeof cartCost);
+
+  if(cartCost != null) {
+    cartCost = parseInt(cartCost); //convertir la string en nombre
+    localStorage.setItem("totalCost", cartCost + teddy.price);
+  } else {
+    localStorage.setItem("totalCost", teddy.price);
+  }
+}
+
+  
